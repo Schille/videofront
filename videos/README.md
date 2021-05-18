@@ -1,0 +1,1 @@
+Place your videos under a category directory here, for example `./cats/video1.mp4` and `./dogs/doge.mp4`.
