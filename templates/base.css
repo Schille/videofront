@@ -1,17 +1,20 @@
 .image-row {
-    display: inline-flex;
+    display: inline-block;
 }
-
 
 .image-row > .img-selector.selected > .row-img {
     width: 250px;
+}
+
+.img-selector {
+    display: inline-block;
 }
 
 
 .img-selector.selected {
     border: 5px solid transparent;
     border-color: blue;
-    transform: translateY(-12%);
+    transform: translateY(10%);
 }
 
 h2 {
