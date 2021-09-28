@@ -2,101 +2,128 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Video Gallery</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./base.css">
+    <title>Gallery</title>
+    <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+    <link rel="stylesheet" href="src/base.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 <body>
-<h2>Cats</h2>
-<div class="image-row">
-    <div id="img1" class="img-selector selected">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
-    <div id="img2" class="img-selector">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1473876988266-ca0860a443b8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
-    <div id="img2" class="img-selector">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1473876988266-ca0860a443b8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
-    <div id="img2" class="img-selector">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1473876988266-ca0860a443b8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
-</div>
-<h2>Dogs</h2>
-<div class="image-row">
-    <div id="img1" class="img-selector">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
-    <div id="img2" class="img-selector">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1473876988266-ca0860a443b8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
-    <div id="img2" class="img-selector">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1473876988266-ca0860a443b8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
-    <div id="img2" class="img-selector">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1473876988266-ca0860a443b8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
-</div>
-<h2>Frogs</h2>
-<div class="image-row">
-    <div id="img1" class="img-selector">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
-    <div id="img2" class="img-selector">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1473876988266-ca0860a443b8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
-    <div id="img2" class="img-selector">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1473876988266-ca0860a443b8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
-    <div id="img2" class="img-selector">
-        <img class="row-img" width="200px" src="https://images.unsplash.com/photo-1473876988266-ca0860a443b8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="">
-    </div>
+
+<div class="video-overlay">
+    <video id="videoplayer" class="video-js videoplayer" preload="auto" data-setup='{"fluid": true}'></video>
 </div>
 
+<div class="content">
+    {%- for categorie in items %}
+    <h2>{{ categorie.title }}</h2>
+    <div class="selector-row">
+        <div class="carousel-{{ categorie.title|lower }} {% if loop.index == 1 %}js-activeSlider{% endif %}">
+            {%- for item in categorie.items %}
+            <div id="img-{{ loop.index }}" class="img-selector">
+                <div class="carousel-item carousel-item-{{ item.__class__.__name__|lower }}">
+                    <p class="type">{{ item.__class__.__name__ }}</p>
+                    <p class="title">{{ item.title }}</p>
+
+                    {%- if item.__class__.__name__ == "Video"  %}
+                    <source src=".{{ item.path }}" type="video/mp4" />
+                    {% endif %}
+                </div>
+            </div>
+            {%- endfor %}
+        </div>
+    </div>
+    <script>
+    $(document).ready(function () {
+        $('.carousel-{{ categorie.title|lower }}').slick({
+            centerMode: true,
+            infinite: false,
+            arrows: false,
+            centerPadding: '60px',
+            slidesToShow: {% if categorie.items|length - 1 < 5 %}{{ categorie.items|length - 1 }}{%- else %}5{%- endif %},
+        });
+    });
+    </script>
+    {%- endfor %}
+</div>
+
+<script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
+<script>
+    $(window).on('beforeunload', function () {
+        $(window).scrollTop(0);
+    });
+</script>
 <script type="application/javascript">
+    var FULLSCREEN = false;
+
     function toggleImage(e) {
-        if (e.code == "ArrowRight") {
-            currentImage = $(".img-selector.selected");
-            nextImage = currentImage.next();
-            if (nextImage.length === 0) {
-                nextImage = $(currentImage.parent().children()[0]);
-            }
-            currentImage.removeClass("selected");
-            nextImage.addClass("selected");
+        var activeSlider = $(".js-activeSlider");
+        if (!FULLSCREEN && e.code === "ArrowRight") {
+            activeSlider.slick("slickNext");
         }
-        if (e.code == "ArrowLeft") {
-            currentImage = $(".img-selector.selected");
-            nextImage = currentImage.prev();
-            if (nextImage.length === 0) {
-                nextImage = $(currentImage.parent().children()[currentImage.parent().children().length - 1]);
-            }
-            currentImage.removeClass("selected");
-            nextImage.addClass("selected");
+        if (!FULLSCREEN && e.code === "ArrowLeft") {
+            activeSlider.slick("slickPrev");
         }
-        if (e.code == "ArrowDown") {
-            currentImage = $(".img-selector.selected");
-            currentRow = currentImage.parent();
-            nextRow = $(currentRow.nextAll(".image-row")[0]);
+        if (!FULLSCREEN && e.code === "ArrowDown") {
+            currentRow = activeSlider.parent();
+            nextRow = $(currentRow.nextAll(".selector-row")[0]);
             if (nextRow.length === 0) {
-                nextRow = $(currentRow.parent().children(".image-row")[0]);
+                nextRow = $(currentRow.parent().children(".selector-row")[0]);
             }
-            nextImage = $(nextRow.children()[0]);
-            currentImage.removeClass("selected");
-            nextImage.addClass("selected");
+            nextSlider = $(nextRow.children()[0]);
+            activeSlider.removeClass("js-activeSlider");
+            nextSlider.addClass("js-activeSlider");
+            $('html, body').animate({
+                scrollTop: nextSlider.offset().top - 100,
+            }, 200);
         }
-        if (e.code == "ArrowUp") {
-            currentImage = $(".img-selector.selected");
-            currentRow = currentImage.parent();
-            nextRow = $(currentRow.prevAll(".image-row")[0]);
+        if (!FULLSCREEN && e.code === "ArrowUp") {
+            currentRow = activeSlider.parent();
+            nextRow = $(currentRow.prevAll(".selector-row")[0]);
             if (nextRow.length === 0) {
-                nextRow = $(currentRow.parent().children(".image-row")[currentRow.parent().children(".image-row").length - 1]);
+                nextRow = $(currentRow.parent().children(".selector-row")[currentRow.parent().children(".selector-row").length - 1]);
             }
-            nextImage = $(nextRow.children()[0]);
-            currentImage.removeClass("selected");
-            nextImage.addClass("selected");
+            nextSlider = $(nextRow.children()[0]);
+            activeSlider.removeClass("js-activeSlider");
+            nextSlider.addClass("js-activeSlider");
+            $('html, body').animate({
+                scrollTop: nextSlider.offset().top - 100,
+            }, 200);
+        }
+
+        var player1 = videojs('videoplayer');
+        if (e.code === "Enter") {
+
+            if (!FULLSCREEN) {
+                var source = $(".js-activeSlider .slick-current >> source")[0];
+                FULLSCREEN = true;
+                console.log({type: source.type, src: source.currentSrc})
+                player1.src([
+                    {type: source.type, src: source.src}
+                ]);
+                $(".video-overlay").show();
+                player1.play();
+            } else {
+                FULLSCREEN = false;
+                $(".video-overlay").hide();
+                player1.pause();
+                player1.currentTime(0);
+            }
+        }
+
+        if (FULLSCREEN && e.code === "ArrowLeft") {
+            player1.currentTime(player1.currentTime() - 10);
+        }
+        if (FULLSCREEN && e.code === "ArrowRight") {
+            player1.currentTime(player1.currentTime() + 10);
         }
     }
+
     document.addEventListener('keydown', toggleImage);
 </script>
 </body>
+
 </html>

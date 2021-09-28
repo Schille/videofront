@@ -1,0 +1,129 @@
+/*Color Scheme (Triade)
+A: #7E7C99
+B: #FF917A
+C: #5749E6
+D: #49E632
+E: #379929
+
+*/
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Ubuntu";
+    overflow: hidden;
+}
+
+.content {
+    padding: 40px;
+    width: 90%;
+    overflow: hidden;
+}
+
+.carousel {
+    max-width: 100vw;
+    width: 100%;
+}
+
+
+.slick-center {
+    width: 160px;
+    height: 213px;
+    transform: translateY(25%);
+}
+
+.slick-track {
+    left: -25%;
+}
+
+.slick-list {
+    height: 300px;
+}
+
+
+.slick-center > .carousel-item {
+    transform: scale(1.2, 1.2);
+    transition: all 100ms ease-in-out;
+    box-shadow: 14px 8px 2px #111a;
+}
+
+
+
+.js-activeSlider .slick-center > .carousel-item {
+    border: #FF917A solid;
+}
+
+
+.slick-slide:not(.slick-center) {
+    transform: translateY(33%);
+}
+
+
+.carousel-item {
+    width: 320px;
+    height: 180px;
+    display: table-cell;
+    margin: 0 auto;
+    text-align: left;
+    color: #fff;
+    background-color: #608FFF;
+    box-shadow: 5px 5px 2px #111a;
+    border-radius: 5px;
+    background-size: 100px;
+    background-repeat: no-repeat;
+
+    background-position-x: 112px;
+    background-position-y: 40px;
+}
+
+.carousel-item-video{
+    background-image: url("p.png");
+}
+
+.carousel-item-diashow{
+    background-image: url("i.png");
+}
+
+.carousel-item > .type {
+    font-weight: lighter;
+    font-size: small;
+    padding-left: 10px;
+}
+
+.carousel-item > .title {
+    font-weight: bolder;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: block;
+    font-size: x-large;
+}
+
+h2 {
+    background: rgba(230, 148, 96, 0.5);
+    font-size: xxx-large;
+    color: #fff;
+    display: inline;
+    padding: 0.5rem;
+
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
+.video-overlay {
+    display: none;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+.videoplayer {
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
