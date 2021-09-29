@@ -10,6 +10,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
 </head>
 <body>
 
@@ -17,11 +18,16 @@
     <video id="videoplayer" class="video-js videoplayer" preload="auto" data-setup='{"fluid": true}'></video>
 </div>
 
+<div class="diashow">
+    <div class="diashow-overlay">
+    </div>
+</div>
+
 <div class="content">
     {%- for categorie in items %}
     <h2>{{ categorie.title }}</h2>
     <div class="selector-row">
-        <div class="carousel-{{ categorie.title|lower }} {% if loop.index == 1 %}js-activeSlider{% endif %}">
+        <div id="carousel-row" class="carousel-{{ categorie.title|lower }} {% if loop.index == 1 %}js-activeSlider{% endif %}">
             {%- for item in categorie.items %}
             <div id="img-{{ loop.index }}" class="img-selector">
                 <div class="carousel-item carousel-item-{{ item.__class__.__name__|lower }}">
@@ -30,6 +36,12 @@
 
                     {%- if item.__class__.__name__ == "Video"  %}
                     <source src=".{{ item.path }}" type="video/mp4" />
+                    {% else %}
+                    <div class="dias" style="display: none">
+                    {%- for slide in item.items %}
+                        <div><img src=".{{ slide }}"></div>
+                    {%- endfor %}
+                    </div>
                     {% endif %}
                 </div>
             </div>
@@ -43,14 +55,13 @@
             infinite: false,
             arrows: false,
             centerPadding: '60px',
-            slidesToShow: {% if categorie.items|length - 1 < 5 %}{{ categorie.items|length - 1 }}{%- else %}5{%- endif %},
+            slidesToShow: '{% if categorie.items|length - 1 < 5 %}{{ categorie.items|length - 1 }}{%- else %}5{%- endif %}',
         });
     });
     </script>
     {%- endfor %}
 </div>
 
-<script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
 <script>
     $(window).on('beforeunload', function () {
         $(window).scrollTop(0);
@@ -58,6 +69,8 @@
 </script>
 <script type="application/javascript">
     var FULLSCREEN = false;
+    var player1 = videojs('videoplayer');
+    var player0 = $('.diashow-overlay');
 
     function toggleImage(e) {
         var activeSlider = $(".js-activeSlider");
@@ -94,31 +107,65 @@
             }, 200);
         }
 
-        var player1 = videojs('videoplayer');
+
         if (e.code === "Enter") {
 
             if (!FULLSCREEN) {
                 var source = $(".js-activeSlider .slick-current >> source")[0];
+                if (source === undefined){
+                    var dias = $(".js-activeSlider .slick-current >> .dias").clone()
+                    console.log(dias.children())
+                    player0.slick({
+                        dots: false,
+                        infinite: true,
+                        speed: 500,
+                        fade: true,
+                        cssEase: 'linear',
+                        prevArrow: false,
+                        nextArrow: false,
+                        slidesToShow: 1,
+
+                    });
+                    player0.slick('slickAdd',dias.children());
+                    $('.diashow').show();
+                }
+                else {
+                    console.log({type: source.type, src: source.currentSrc})
+                    player1.src([{type: source.type, src: source.src}]);
+                    $(".video-overlay").show();
+                    player1.play();
+                }
                 FULLSCREEN = true;
-                console.log({type: source.type, src: source.currentSrc})
-                player1.src([
-                    {type: source.type, src: source.src}
-                ]);
-                $(".video-overlay").show();
-                player1.play();
+
             } else {
                 FULLSCREEN = false;
-                $(".video-overlay").hide();
-                player1.pause();
-                player1.currentTime(0);
+                if ($(".video-overlay").is(":visible")){
+                    $(".video-overlay").hide();
+                    player1.pause();
+                    player1.currentTime(0);
+                }
+                else{
+                    player0.slick('removeSlide', null, null, true);
+                    player0.slick('unslick');
+                }
             }
         }
 
         if (FULLSCREEN && e.code === "ArrowLeft") {
-            player1.currentTime(player1.currentTime() - 10);
+            if ($(".video-overlay").is(":visible")){
+                player1.currentTime(player1.currentTime() - 10);
+            }
+            else {
+                player0.slick("slickNext");
+            }
         }
         if (FULLSCREEN && e.code === "ArrowRight") {
-            player1.currentTime(player1.currentTime() + 10);
+            if ($(".video-overlay").is(":visible")){
+                player1.currentTime(player1.currentTime() + 10);
+            }
+            else {
+                player0.slick("slickPrev");
+            }
         }
     }
 

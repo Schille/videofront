@@ -87,7 +87,8 @@ def get_assets(path):
             for k in sort_by_prefix(os.listdir(cpath)):
                 dpath = os.path.join(cpath, k)
                 if os.path.isdir(dpath):
-                    _items.append(Diashow(k, path=dpath, _items=sort_by_prefix(os.listdir(cpath))))
+                    _items.append(Diashow(k, path=dpath, _items=[os.path.join(dpath, s)
+                                                                 for s in sort_by_prefix(os.listdir(dpath))]))
                 else:
                     _items.append(Video(k, path=dpath))
             assets.append(Category(title=_i, path=cpath, _items=_items))
