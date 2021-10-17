@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Gallery</title>
     <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="src/slick.css"/>
 
     <link rel="stylesheet" href="src/base.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
+    <script type="text/javascript" src="src/slick.min.js"></script>
+    <script src="src/video.min.js"></script>
 </head>
 <body>
 
@@ -27,9 +27,9 @@
     {%- for categorie in items %}
     <h2>{{ categorie.title }}</h2>
     <div class="selector-row">
-        <div id="carousel-row" class="carousel-{{ categorie.title|lower }} {% if loop.index == 1 %}js-activeSlider{% endif %}">
+        <div id="carousel-row" class="carousel-{{ categorie.slug|lower }} {% if loop.index == 1 %}js-activeSlider{% endif %}">
             {%- for item in categorie.items %}
-            <div id="img-{{ loop.index }}" class="img-selector">
+            <div id="img-{{ loop.index }}" class="img-selector s-slide">
                 <div class="carousel-item carousel-item-{{ item.__class__.__name__|lower }}">
                     <p class="type">{{ item.__class__.__name__ }}</p>
                     <p class="title">{{ item.title }}</p>
@@ -50,12 +50,14 @@
     </div>
     <script>
     $(document).ready(function () {
-        $('.carousel-{{ categorie.title|lower }}').slick({
+        $('.carousel-{{ categorie.slug|lower }}').slick({
             centerMode: true,
             infinite: false,
             arrows: false,
+            variableWidth: true,
             centerPadding: '60px',
             slidesToShow: '{% if categorie.items|length - 1 < 5 %}{{ categorie.items|length - 1 }}{%- else %}5{%- endif %}',
+            // slidesToShow: 1,
         });
     });
     </script>
@@ -72,7 +74,8 @@
     var player1 = videojs('videoplayer');
     var player0 = $('.diashow-overlay');
 
-    function toggleImage(e) {
+
+    function handleKeyDown(e) {
         var activeSlider = $(".js-activeSlider");
         if (!FULLSCREEN && e.code === "ArrowRight") {
             activeSlider.slick("slickNext");
@@ -114,17 +117,20 @@
                 var source = $(".js-activeSlider .slick-current >> source")[0];
                 if (source === undefined){
                     var dias = $(".js-activeSlider .slick-current >> .dias").clone()
-                    console.log(dias.children())
                     player0.slick({
                         dots: false,
-                        infinite: true,
-                        speed: 500,
+                        pauseOnHover:false,
+                        pauseOnFocus:false,
+                        infinite: false,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
                         fade: true,
                         cssEase: 'linear',
                         prevArrow: false,
                         nextArrow: false,
                         slidesToShow: 1,
-
+                        slidesToScroll: 1,
+                        initialSlide: 1,
                     });
                     player0.slick('slickAdd',dias.children());
                     $('.diashow').show();
@@ -169,7 +175,7 @@
         }
     }
 
-    document.addEventListener('keydown', toggleImage);
+    document.addEventListener('keydown', handleKeyDown);
 </script>
 </body>
 

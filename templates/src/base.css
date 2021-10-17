@@ -22,22 +22,28 @@ body {
     padding: 40px;
     width: 90%;
     overflow: hidden;
+    position: relative;
 }
 
-.carousel {
-    max-width: 100vw;
-    width: 100%;
-}
+/*.carousel {*/
+/*    max-width: 100vw;*/
+/*    width: 100%;*/
+/*}*/
 
+#carousel-row{
+    max-width: 100%;
+}
 
 #carousel-row.slick-slider .slick-center {
     width: 160px;
     height: 213px;
-    transform: translateY(25%);
+    /*padding: 0 40px;*/
+    /*transform: translateY(25%);*/
 }
 
 #carousel-row.slick-slider .slick-track {
     left: -20%;
+    top: 40px;
 }
 
 #carousel-row.slick-slider .slick-list {
@@ -46,7 +52,6 @@ body {
 
 
 #carousel-row.slick-slider .slick-center > .carousel-item {
-    transform: scale(1.2, 1.2);
     transition: all 100ms ease-in-out;
     box-shadow: 14px 8px 2px #111a;
 }
@@ -54,20 +59,25 @@ body {
 
 
 .js-activeSlider .slick-center > .carousel-item {
-    border: #FF917A solid;
+    border: 3px #FF917A solid;
+    transform: scale(1.2, 1.2);
 }
 
 
 #carousel-row.slick-slider .slick-slide:not(.slick-center) {
-    transform: translateY(33%);
+    /*transform: translateY(33%);*/
 }
 
+#carousel-row.slick-slider .slick-slide {
+
+}
 
 #carousel-row.slick-slider .carousel-item {
-    width: 320px;
+    padding: 3px;
+    /*width: 320px;*/
     height: 180px;
-    display: table-cell;
-    margin: 0 auto;
+    /*display: table-cell;*/
+    /*margin: 0 130px;*/
     text-align: left;
     color: #fff;
     background-color: #608FFF;
@@ -140,3 +150,8 @@ h2 {
     max-width: 100%;
 }
 
+.s-slide {
+    width: 360px !important;
+    padding: 0 40px;
+    position: relative;
+}

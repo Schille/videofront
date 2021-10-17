@@ -18,6 +18,8 @@ def dir_path(path):
 parser = argparse.ArgumentParser(description='Gallery generator script.')
 parser.add_argument("--assets", "-a", type=dir_path, default="./assets",
                     help="path to the asset directory")
+parser.add_argument("--background-scroll", "-b", type=bool, default=True,
+                    help="Generate scrollable background")
 
 
 templateEnv = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath="./"))
@@ -31,7 +33,11 @@ class Item:
 
     @property
     def title(self):
-        return re.sub(r"(\.(.*))|([0-9]*[\W_])", "", re.sub(r"(\.(.*))", "", self._raw_title))
+        return re.sub(r"(\.(.*))|([^a-zA-Z0-9_\- ]|([0-9]*\_))", "", self._raw_title)
+
+    @property
+    def slug(self):
+        return re.sub(r"(\.(.*))|([0-9]*[\W])", "", self._raw_title)
 
 
 class Video(Item):
