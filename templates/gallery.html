@@ -77,13 +77,13 @@
 
     function handleKeyDown(e) {
         var activeSlider = $(".js-activeSlider");
-        if (!FULLSCREEN && e.code === "ArrowRight") {
+        if (!FULLSCREEN && e.key === "ArrowRight") {
             activeSlider.slick("slickNext");
         }
-        if (!FULLSCREEN && e.code === "ArrowLeft") {
+        if (!FULLSCREEN && e.key === "ArrowLeft") {
             activeSlider.slick("slickPrev");
         }
-        if (!FULLSCREEN && e.code === "ArrowDown") {
+        if (!FULLSCREEN && e.key === "ArrowDown") {
             currentRow = activeSlider.parent();
             nextRow = $(currentRow.nextAll(".selector-row")[0]);
             if (nextRow.length === 0) {
@@ -96,7 +96,7 @@
                 scrollTop: nextSlider.offset().top - 100,
             }, 200);
         }
-        if (!FULLSCREEN && e.code === "ArrowUp") {
+        if (!FULLSCREEN && e.key === "ArrowUp") {
             currentRow = activeSlider.parent();
             nextRow = $(currentRow.prevAll(".selector-row")[0]);
             if (nextRow.length === 0) {
@@ -111,7 +111,7 @@
         }
 
 
-        if (e.code === "Enter") {
+        if (e.key === "Enter") {
 
             if (!FULLSCREEN) {
                 var source = $(".js-activeSlider .slick-current >> source")[0];
@@ -157,7 +157,7 @@
             }
         }
 
-        if (FULLSCREEN && e.code === "ArrowLeft") {
+        if (FULLSCREEN && e.key === "ArrowLeft") {
             if ($(".video-overlay").is(":visible")){
                 player1.currentTime(player1.currentTime() - 10);
             }
@@ -165,7 +165,7 @@
                 player0.slick("slickNext");
             }
         }
-        if (FULLSCREEN && e.code === "ArrowRight") {
+        if (FULLSCREEN && e.key === "ArrowRight") {
             if ($(".video-overlay").is(":visible")){
                 player1.currentTime(player1.currentTime() + 10);
             }
