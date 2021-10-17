@@ -33,7 +33,7 @@ class Item:
 
     @property
     def title(self):
-        return re.sub(r"(\.(.*))|([^a-zA-Z0-9_\- ]|([0-9]*\_))", "", self._raw_title)
+        return re.sub(r"(\.(.*))|([^a-zA-ZäÄüÜöÖ0-9_\- ]|([0-9]*\_))", "", self._raw_title)
 
     @property
     def slug(self):
