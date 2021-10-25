@@ -14,15 +14,6 @@
 </head>
 <body>
 
-<div class="video-overlay">
-    <video id="videoplayer" class="video-js videoplayer" preload="auto" data-setup='{"fluid": true}'></video>
-</div>
-
-<div class="diashow">
-    <div class="diashow-overlay">
-    </div>
-</div>
-
 <div class="content">
     {%- for categorie in items %}
     <h2>{{ categorie.title }}</h2>
@@ -62,6 +53,15 @@
     });
     </script>
     {%- endfor %}
+</div>
+
+<div class="video-overlay">
+    <video id="videoplayer" class="video-js videoplayer" preload="auto" data-setup='{"fluid": true}'></video>
+</div>
+
+<div class="diashow">
+    <div class="diashow-overlay">
+    </div>
 </div>
 
 <script>
@@ -117,6 +117,7 @@
                 var source = $(".js-activeSlider .slick-current >> source")[0];
                 if (source === undefined){
                     var dias = $(".js-activeSlider .slick-current >> .dias").clone()
+                    $('.diashow').show();
                     player0.slick({
                         dots: false,
                         pauseOnHover:false,
@@ -130,10 +131,10 @@
                         nextArrow: false,
                         slidesToShow: 1,
                         slidesToScroll: 1,
-                        initialSlide: 1,
+                        initialSlide: 0,
                     });
-                    player0.slick('slickAdd',dias.children());
-                    $('.diashow').show();
+                    player0.slick('slickAdd', dias.children());
+
                 }
                 else {
                     console.log({type: source.type, src: source.currentSrc})
@@ -153,6 +154,7 @@
                 else{
                     player0.slick('removeSlide', null, null, true);
                     player0.slick('unslick');
+                    $('.diashow').hide();
                 }
             }
         }
@@ -162,7 +164,7 @@
                 player1.currentTime(player1.currentTime() - 10);
             }
             else {
-                player0.slick("slickNext");
+                player0.slick("slickPrev");
             }
         }
         if (FULLSCREEN && e.key === "ArrowRight") {
@@ -170,7 +172,7 @@
                 player1.currentTime(player1.currentTime() + 10);
             }
             else {
-                player0.slick("slickPrev");
+                player0.slick("slickNext");
             }
         }
     }

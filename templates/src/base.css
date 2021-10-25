@@ -16,6 +16,7 @@ body {
     background-size: cover;
     font-family: "Ubuntu";
     overflow: hidden;
+    position: relative;
 }
 
 .content {
@@ -129,15 +130,27 @@ h2 {
     left: 0;
     position: fixed;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    background: black;
     z-index: 100;
 }
 
 .diashow {
     background: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 1000;
 }
 
 .videoplayer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
     flex-wrap: wrap;
     justify-content: space-between;
 }
@@ -145,9 +158,22 @@ h2 {
 .diashow-overlay.slick-slider .slick-slide > img {
     padding: 0;
     display: block;
-    margin: 0 auto;
-    height: 100vh;
-    max-width: 100%;
+
+    max-height: 100vh !important;
+    max-width: 100vw;
+
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.diashow-overlay.slick-slider .slick-slide {
+    height: 100vh !important;
+    width: 100vw !important;
+    position: relative;
 }
 
 .s-slide {
